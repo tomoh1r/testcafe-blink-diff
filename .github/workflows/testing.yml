@@ -42,5 +42,10 @@ jobs:
       - name: Run test (macOS)
         if: ${{ matrix.env.name == 'macos' }}
         run: |-
-          npm i testcafe@latest
-          npx testcafe --config-file e2e/.testcaferc.json ${{ matrix.env.browser }}
+          export HOSTNAME=localhost
+          export PORT1=1337
+          export PORT2=1338
+          npx testcafe remote --config-file e2e/.testcaferc.json ${{ matrix.env.browser }} --hostname ${HOSTNAME} --ports ${PORT1},${PORT2} &
+          pid=$!
+          open -a Safari http://${HOSTNAME}:${PORT1}/browser/connect
+          wait $pid
