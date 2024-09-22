@@ -16,7 +16,6 @@ jobs:
           - node: 20
           - env:
             - name: ubuntu
-          - env:
             - name: windows
     runs-on: ${{ matrix.env.os }}
     env:
