@@ -12,10 +12,12 @@ jobs:
         ]
         node: [18, 20, 22]
         exclude:
+          - env:
+              name: ubuntu
+          - env:
+              name: windows
           - node: 18
           - node: 20
-          - env: { name: ubuntu }
-          - env: { name: windows }
     runs-on: ${{ matrix.env.os }}
     env:
       # XXX: adjust to node 18's defaults changes
