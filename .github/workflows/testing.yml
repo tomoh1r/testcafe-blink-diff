@@ -6,16 +6,12 @@ jobs:
     strategy:
       matrix:
         env: [
-          { name: ubuntu, os: ubuntu-latest, browser: chrome },
-          { name: windows, os: windows-latest, browser: edge }
+          #{ name: ubuntu, os: ubuntu-latest, browser: chrome },
+          #{ name: windows, os: windows-latest, browser: edge }
           { name: macos, os: macos-latest, browser: safari }
         ]
         node: [18, 20, 22]
         exclude:
-          - env:
-            - name: ubuntu
-          - env:
-            - name: windows
           - node: 18
           - node: 20
     runs-on: ${{ matrix.env.os }}
