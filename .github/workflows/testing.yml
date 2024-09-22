@@ -45,7 +45,7 @@ jobs:
           export HOSTNAME=localhost
           export PORT1=51337
           export PORT2=51338
-          npx testcafe remote --config-file e2e/.testcaferc.json --hostname ${HOSTNAME} --ports ${PORT1},${PORT2} &
+          npx testcafe remote --config-file e2e/.testcaferc.json --hostname ${HOSTNAME} --ports ${PORT1},${PORT2} -f Testing &
           pid=$!
           open -a Safari http://${HOSTNAME}:${PORT1}/browser/connect
           wait $pid
