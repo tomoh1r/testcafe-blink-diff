@@ -8,8 +8,16 @@ jobs:
         env: [
           { name: ubuntu, os: ubuntu-latest, browser: chrome },
           { name: windows, os: windows-latest, browser: edge }
+          { name: macos, os: macos-latest, browser: safari }
         ]
         node: [18, 20, 22]
+        exclude:
+          - node: 18
+          - node: 20
+          - env:
+              name: ubuntu
+          - env:
+              name: windows
     runs-on: ${{ matrix.env.os }}
     env:
       # XXX: adjust to node 18's defaults changes
@@ -34,4 +42,7 @@ jobs:
           args: "--config-file e2e/.testcaferc.json ${{ matrix.env.browser }}"
       - name: Run test (Windows)
         if: ${{ matrix.env.name == 'windows' }}
+        run: npx testcafe --config-file e2e/.testcaferc.json ${{ matrix.env.browser }}
+      - name: Run test (macOS)
+        if: ${{ matrix.env.name == 'macos' }}
         run: npx testcafe --config-file e2e/.testcaferc.json ${{ matrix.env.browser }}
