@@ -14,8 +14,8 @@ jobs:
         exclude:
           - node: 18
           - node: 20
-          - env:
-            - name: ubuntu
+          - { env: { name: ubuntu } }
+          - { env: { name: windows } }
     runs-on: ${{ matrix.env.os }}
     env:
       # XXX: adjust to node 18's defaults changes
